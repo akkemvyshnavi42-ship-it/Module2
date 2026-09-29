@@ -1,0 +1,280 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            width: 450px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        h2 {
+            text-align: center;
+            color: #6a11cb;
+            margin-bottom: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        input,
+        select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #6a11cb;
+            box-shadow: 0 0 5px rgba(106, 17, 203, 0.3);
+        }
+        
+        .gender {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .gender label {
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .gender input {
+            width: auto;
+        }
+        
+        .terms {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 15px 0;
+        }
+        
+        .terms input {
+            width: auto;
+        }
+        
+        .terms label {
+            margin: 0;
+            font-weight: normal;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #6a11cb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background: #4d0c96;
+        }
+        
+        #message {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Student Registration</h2>
+
+        <form id="registrationForm">
+
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Enter your full name">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="Enter 10-digit phone number">
+            </div>
+
+            <div class="form-group">
+                <label>Gender</label>
+
+                <div class="gender">
+                    <label>
+                        <input type="radio" name="gender" value="Male">
+                        Male
+                    </label>
+
+                    <label>
+                        <input type="radio" name="gender" value="Female">
+                        Female
+                    </label>
+
+                    <label>
+                        <input type="radio" name="gender" value="Other">
+                        Other
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="course">Course</label>
+
+                <select id="course">
+                    <option value="">Select Course</option>
+                    <option value="AI & DS">AI & DS</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Information Technology">Information Technology</option>
+                    <option value="ECE">ECE</option>
+                    <option value="EEE">EEE</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password">
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" placeholder="Confirm password">
+            </div>
+
+            <div class="terms">
+                <input type="checkbox" id="terms">
+                <label for="terms">I agree to the terms and conditions</label>
+            </div>
+
+            <button type="submit">Register</button>
+
+            <p id="message"></p>
+
+        </form>
+    </div>
+
+
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+            let course = document.getElementById("course").value;
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+            let terms = document.getElementById("terms").checked;
+
+            let message = document.getElementById("message");
+
+            // Name validation
+            if (name === "") {
+                message.innerHTML = "Please enter your name.";
+                message.style.color = "red";
+                return;
+            }
+
+            // Email validation
+            if (email === "") {
+                message.innerHTML = "Please enter your email.";
+                message.style.color = "red";
+                return;
+            }
+
+            // Phone validation
+            if (!/^[0-9]{10}$/.test(phone)) {
+                message.innerHTML = "Please enter a valid 10-digit phone number.";
+                message.style.color = "red";
+                return;
+            }
+
+            // Course validation
+            if (course === "") {
+                message.innerHTML = "Please select your course.";
+                message.style.color = "red";
+                return;
+            }
+
+            // Password validation
+            if (password.length < 6) {
+                message.innerHTML = "Password must contain at least 6 characters.";
+                message.style.color = "red";
+                return;
+            }
+
+            // Confirm password
+            if (password !== confirmPassword) {
+                message.innerHTML = "Passwords do not match.";
+                message.style.color = "red";
+                return;
+            }
+
+            // Terms validation
+            if (!terms) {
+                message.innerHTML = "Please accept the terms and conditions.";
+                message.style.color = "red";
+                return;
+            }
+
+            // Success message
+            message.innerHTML = "Registration successful!";
+            message.style.color = "green";
+
+            // Clear form
+            document.getElementById("registrationForm").reset();
+
+        });
+    </script>
+
+</body>
+
+</html>
+```

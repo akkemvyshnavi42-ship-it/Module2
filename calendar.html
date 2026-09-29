@@ -1,0 +1,67 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Calendar</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .calendar {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            color: #6a11cb;
+        }
+        
+        input {
+            padding: 12px;
+            width: 90%;
+            border: 2px solid #6a11cb;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        p {
+            color: #555;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calendar">
+
+        <h1>Calendar</h1>
+
+        <p>Select a Date:</p>
+
+        <!-- HTML5 Calendar Input -->
+        <input type="date">
+
+        <p>Choose your required date from the calendar.</p>
+
+    </div>
+
+</body>
+
+</html>
+```
